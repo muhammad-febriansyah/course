@@ -1,0 +1,163 @@
+import HomeLayout from "@/Layouts/HomeLayout";
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbPage,
+    BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import PulsatingButton from "@/components/ui/pulsating-button";
+import { Inertia } from "@inertiajs/inertia";
+import { Link, useForm } from "@inertiajs/react";
+import { Loader2, SendHorizonalIcon } from "lucide-react";
+import { FormEventHandler } from "react";
+import { toast } from "sonner";
+import { useRoute } from "ziggy-js";
+export default function Index() {
+    const route = useRoute();
+    const { data, setData, post, processing, errors, reset } = useForm({
+        email: "",
+        password: "",
+    });
+    const handleSubmit: FormEventHandler = async (e) => {
+        e.preventDefault();
+        try {
+            post(route("home.checklogin"), {
+                onSuccess: () => {
+                    toast.success("Login berhasil.", {
+                        position: "top-right",
+                        richColors: true,
+                    });
+                    reset();
+                    Inertia.visit(route("student.home"), {
+                        preserveState: true,
+                    });
+                },
+                onError: () => {
+                    toast.error(
+                        "Email atau password yang anda masukkan salah.",
+                        {
+                            position: "top-right",
+                            richColors: true,
+                        }
+                    );
+                },
+            });
+        } catch (error) {
+            toast.error("Ada kesalahan saat mengirim pesan. Coba lagi nanti.");
+        }
+    };
+    return (
+        <HomeLayout>
+            <section className="flex items-center h-56 justify-center bg-white mt-14 lg:mt-[140px]">
+                {/* Add margin-top to offset navbar height */}
+                <div className="px-6 text-center space-y-7 ">
+                    <h1 className="text-3xl font-bold lg:text-5xl">Login</h1>
+                    <Breadcrumb className="flex flex-row items-center justify-center mx-auto space-x-2">
+                        <BreadcrumbList>
+                            <BreadcrumbItem>
+                                <BreadcrumbLink asChild>
+                                    <Link href="/">Home</Link>
+                                </BreadcrumbLink>
+                            </BreadcrumbItem>
+                            <BreadcrumbSeparator />
+                            <BreadcrumbItem>
+                                <BreadcrumbPage>Login</BreadcrumbPage>
+                            </BreadcrumbItem>
+                        </BreadcrumbList>
+                    </Breadcrumb>
+                </div>
+            </section>
+            <section className="container py-10">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                    <div className="col-span-1 lg:max-w-[80%] px-6 py-10 bg-white rounded-2xl">
+                        <div className="space-y-3 pb-7">
+                            <h1 className="text-3xl font-bold text-biruTua">
+                                Login
+                            </h1>
+                            <p className="text-sm text-gray-500">
+                                Silahkan login terlebih dahulu untuk melanjutkan
+                                ke halaman berikutnya.
+                            </p>
+                        </div>
+                        <form onSubmit={handleSubmit}>
+                            <div className="grid items-center w-full gap-2 mb-5">
+                                <Label htmlFor="subject" className="mb-3">
+                                    Email
+                                </Label>
+                                <Input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    required
+                                    value={data.email}
+                                    onChange={(e) =>
+                                        setData("email", e.target.value)
+                                    }
+                                    placeholder="Masukan Email Anda"
+                                />
+                                {errors.email && (
+                                    <span className="text-sm text-red-600">
+                                        {errors.email}
+                                    </span>
+                                )}
+                            </div>
+                            <div className="grid items-center w-full gap-2 mb-5">
+                                <Label htmlFor="password" className="mb-3">
+                                    Password
+                                </Label>
+                                <Input
+                                    type="password"
+                                    id="password"
+                                    required
+                                    value={data.password}
+                                    onChange={(e) =>
+                                        setData("password", e.target.value)
+                                    }
+                                    placeholder="Masukan Password Anda"
+                                    name="password"
+                                />
+                            </div>
+
+                            <p className="mb-3 text-sm text-gray-500 sm:mt-0">
+                                Don&apos;t have an account?
+                                <Link
+                                    href={route("home.register")}
+                                    className="text-gray-700 underline"
+                                >
+                                    Register here
+                                </Link>
+                                .
+                            </p>
+                            <div className="flex items-center space-x-2">
+                                {processing ? (
+                                    <Button
+                                        disabled
+                                        className="w-full rounded-full bg-biru"
+                                    >
+                                        <Loader2 className="animate-spin" />
+                                        Tunggu Sebentar...
+                                    </Button>
+                                ) : (
+                                    <PulsatingButton
+                                        type="submit"
+                                        className="w-full bg-biru"
+                                    >
+                                        Login
+                                    </PulsatingButton>
+                                )}
+                            </div>
+                        </form>
+                    </div>
+                    <div className="col-span-1">
+                        <img src="/bg-log.png" className="w-full" alt="" />
+                    </div>
+                </div>
+            </section>
+        </HomeLayout>
+    );
+}
