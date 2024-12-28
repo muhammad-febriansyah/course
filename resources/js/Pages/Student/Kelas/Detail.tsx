@@ -374,7 +374,7 @@ export default function Detail({
                                         <img
                                             src={`/storage/${kelas.user.image}`}
                                             alt="User Avatar"
-                                            className="object-cover"
+                                            className="object-cover w-16 h-16 rounded-full"
                                         />
                                     ) : kelas.user.jk === "Laki-laki" ? (
                                         <img
