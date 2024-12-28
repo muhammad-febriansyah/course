@@ -211,7 +211,7 @@ export default function Detail({
                                     {sectionData.map((section, index) => (
                                         <AccordionItem
                                             value={index.toString()}
-                                            key={index}
+                                            key={section.id}
                                             className="px-6 my-3 mt-5 bg-white rounded-2xl"
                                         >
                                             <AccordionTrigger className="flex items-center text-black">
