@@ -51,7 +51,7 @@ export default function Index({ about, faq, setting }: Props) {
                     <div className="order-2 md:order-1">
                         <img
                             src={`/storage/${about.image}`}
-                            className="w-full h-[360px] md:h-[550px] rounded-2xl"
+                            className="w-full h-[330px] md:h-[450px] rounded-2xl"
                             alt=""
                         />
                     </div>

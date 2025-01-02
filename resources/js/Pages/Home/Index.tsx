@@ -98,10 +98,7 @@ export default function Home({
                     </div>
 
                     {/* Right section (Hero Video) */}
-                    <div
-                        data-aos="fade-left"
-                        className="flex justify-center order-2 w-full pb-10 lg:order-2 md:order-1 lg:w-1/2 lg:justify-start"
-                    >
+                    <div className="flex justify-center order-2 w-full pb-10 lg:order-2 md:order-1 lg:w-1/2 lg:justify-start">
                         <HeroVideoDialog
                             className={`w-full md:w-auto rounded-[40px] ${
                                 isScrolled ? "" : "lg:z-[999]"
@@ -167,7 +164,7 @@ export default function Home({
                     <div className="order-2 md:order-1">
                         <img
                             src={`/storage/${about.image}`}
-                            className="w-full h-[360px] md:h-[550px] rounded-2xl"
+                            className="w-full h-[330px] md:h-[450px] rounded-2xl"
                             alt=""
                         />
                     </div>

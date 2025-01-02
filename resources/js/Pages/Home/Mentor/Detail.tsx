@@ -50,19 +50,19 @@ export default function Detail({ data, kelas, testimoni }: Props) {
                                 <img
                                     src={`/storage/${data.image}`}
                                     alt="User Avatar"
-                                    className="object-cover"
+                                    className="object-cover w-16 h-16 rounded-full"
                                 />
                             ) : data.jk === "Laki-laki" ? (
                                 <img
                                     src="/lk.png"
                                     className="object-cover "
-                                    alt="Laki-laki Avatar"
+                                    alt="Laki-laki Avatar w-16 h-16 rounded-full"
                                 />
                             ) : (
                                 <img
                                     src="/cw.png"
                                     alt="Perempuan Avatar"
-                                    className="object-cover "
+                                    className="object-cover w-16 h-16 rounded-full"
                                 />
                             )}
                             <div className="flex flex-col">

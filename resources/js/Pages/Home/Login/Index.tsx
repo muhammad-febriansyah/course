@@ -25,31 +25,17 @@ export default function Index() {
     });
     const handleSubmit: FormEventHandler = async (e) => {
         e.preventDefault();
-        try {
-            post(route("home.checklogin"), {
-                onSuccess: () => {
-                    toast.success("Login berhasil.", {
-                        position: "top-right",
-                        richColors: true,
-                    });
-                    reset();
-                    Inertia.visit(route("student.home"), {
-                        preserveState: true,
-                    });
-                },
-                onError: () => {
-                    toast.error(
-                        "Email atau password yang anda masukkan salah.",
-                        {
-                            position: "top-right",
-                            richColors: true,
-                        }
-                    );
-                },
-            });
-        } catch (error) {
-            toast.error("Ada kesalahan saat mengirim pesan. Coba lagi nanti.");
-        }
+        post(route("home.checklogin"), {
+            onSuccess: () => {
+                Inertia.visit(route("student.home"));
+            },
+            onError: () => {
+                toast.error("Email atau password yang anda masukkan salah.", {
+                    position: "top-right",
+                    richColors: true,
+                });
+            },
+        });
     };
     return (
         <HomeLayout>

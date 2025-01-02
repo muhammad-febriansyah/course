@@ -44,7 +44,7 @@ export default function AboutUs() {
                     <div className="order-2 md:order-1">
                         <img
                             src={data.image}
-                            className="w-full h-[360px] md:h-[400px] lg:h-[550px] rounded-2xl"
+                            className="w-full h-[330px] md:h-[450px] rounded-2xl"
                             alt=""
                         />
                     </div>
