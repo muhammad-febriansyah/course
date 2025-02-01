@@ -163,9 +163,7 @@ class UserResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            AuthenticationLogsRelationManager::class,
-        ];
+        return [];
     }
 
     public static function getPages(): array

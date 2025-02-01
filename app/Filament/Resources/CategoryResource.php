@@ -29,6 +29,7 @@ class CategoryResource extends Resource
     protected static ?string $navigationGroup = 'Course';
     protected static ?string $navigationLabel = 'Kategori Kelas';
     protected static ?int $navigationSort = 4;
+
     public static function form(Form $form): Form
     {
         return $form
